@@ -219,6 +219,7 @@ public:
 		ret->setValue(this->_value / ret->_value);
 		return ret;
 	}
+
 	virtual const IOperand *operator%(IOperand const &rhs) const
 	{
 		throw std::runtime_error("Not Implimented");

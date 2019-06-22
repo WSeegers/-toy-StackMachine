@@ -1,10 +1,7 @@
 add_library(
 	Core
-	# src/OpInt16.cpp
-	# src/OpInt32.cpp
-	# src/Double.cpp
-	# src/Int32.cpp
 	src/OperandFactory.cpp
+	src/Stack.cpp
 	)
 
 target_include_directories(Core PUBLIC "./include")

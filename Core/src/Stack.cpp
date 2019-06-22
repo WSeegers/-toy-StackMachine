@@ -1,5 +1,7 @@
 #include "Stack.hpp"
 
+#include <stdexcept>
+
 Stack::Stack() {}
 Stack::~Stack()
 {
@@ -21,7 +23,12 @@ void Stack::pop()
 	this->_memory.pop();
 };
 
-// std::string Stack::dump();
+std::string Stack::dump()
+{
+	throw std::runtime_error("Not Implimented");
+	return std::string();
+};
+
 void Stack::assert(eOperandType type, const std::string &value)
 {
 	if (this->_memory.empty())
@@ -40,9 +47,9 @@ void Stack::assert(eOperandType type, const std::string &value)
 
 void Stack::add()
 {
-	IOperand *f1 = this->_memory.top;
+	const IOperand *f1 = this->_memory.top();
 	this->_memory.pop();
-	IOperand *f2 = this->_memory.top;
+	const IOperand *f2 = this->_memory.top();
 	this->_memory.pop();
 
 	this->_memory.push(*f1 + *f2);
@@ -52,9 +59,9 @@ void Stack::add()
 
 void Stack::sub()
 {
-	IOperand *f1 = this->_memory.top;
+	const IOperand *f1 = this->_memory.top();
 	this->_memory.pop();
-	IOperand *f2 = this->_memory.top;
+	const IOperand *f2 = this->_memory.top();
 	this->_memory.pop();
 
 	this->_memory.push(*f1 - *f2);
@@ -64,9 +71,9 @@ void Stack::sub()
 
 void Stack::mul()
 {
-	IOperand *f1 = this->_memory.top;
+	const IOperand *f1 = this->_memory.top();
 	this->_memory.pop();
-	IOperand *f2 = this->_memory.top;
+	const IOperand *f2 = this->_memory.top();
 	this->_memory.pop();
 
 	this->_memory.push(*f1 * *f2);
@@ -76,9 +83,9 @@ void Stack::mul()
 
 void Stack::div()
 {
-	IOperand *f1 = this->_memory.top;
+	const IOperand *f1 = this->_memory.top();
 	this->_memory.pop();
-	IOperand *f2 = this->_memory.top;
+	const IOperand *f2 = this->_memory.top();
 	this->_memory.pop();
 
 	this->_memory.push(*f1 / *f2);
@@ -88,9 +95,9 @@ void Stack::div()
 
 void Stack::mod()
 {
-	IOperand *f1 = this->_memory.top;
+	const IOperand *f1 = this->_memory.top();
 	this->_memory.pop();
-	IOperand *f2 = this->_memory.top;
+	const IOperand *f2 = this->_memory.top();
 	this->_memory.pop();
 
 	this->_memory.push(*f1 % *f2);
