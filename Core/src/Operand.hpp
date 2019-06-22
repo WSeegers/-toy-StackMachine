@@ -219,9 +219,23 @@ public:
 		ret->setValue(this->_value / ret->_value);
 		return ret;
 	}
-	virtual const IOperand *operator%(IOperand const &rhs) const { return this; }
+	virtual const IOperand *operator%(IOperand const &rhs) const
+	{
+		throw std::runtime_error("Not Implimented");
+	}
 
-	static T getMax() { return std::numeric_limits<T>::max(); }
+	virtual bool operator==(IOperand const &rhs) const
+	{
+		if (this->getPrecision() < rhs.getPrecision())
+			return rhs == *this;
+
+		return this->_value == Operand<T>(rhs.toString())._value;
+	}
+
+	static T getMax()
+	{
+		return std::numeric_limits<T>::max();
+	}
 	static T getMin() { return std::numeric_limits<T>::min(); }
 
 	struct Overflow;
