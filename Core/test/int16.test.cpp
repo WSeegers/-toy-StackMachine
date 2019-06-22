@@ -1,10 +1,16 @@
 #include "util.hpp"
 
-TEST_CASE("Int16", "[INT16]")
+TEST_CASE("[INT16-INST]")
 {
 	test_int_instantiation<Int16>();
-	test_int_overflow<Int16>();
-	overflow_tests<Int16>();
+}
 
-	// addition_tests<Int16>();
+TEST_CASE("[INT16-OVERFLOW]")
+{
+	overflow_tests<Int16>();
+}
+
+TEST_CASE("[INT16-OPERATOR]")
+{
+	safe_operator_tests<Int16>();
 }

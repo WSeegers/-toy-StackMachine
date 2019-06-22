@@ -1,7 +1,5 @@
 #include "OperandFactory.hpp"
 #include "Operand.hpp"
-// #include "Double.hpp"
-// #include "Int32.hpp"
 
 OperandFactory::OperandFactory()
 {

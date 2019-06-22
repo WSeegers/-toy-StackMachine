@@ -1,9 +1,16 @@
 #include "util.hpp"
 
-TEST_CASE("Int8", "[INT8]")
+TEST_CASE("[INT8-INST]")
 {
 	test_int_instantiation<Int8>();
-	test_int_overflow<Int8>();
+}
+
+TEST_CASE("[INT8-OVERFLOW]")
+{
 	overflow_tests<Int8>();
-	// addition_tests<Int8>();
+}
+
+TEST_CASE("[INT8-OPERATOR]")
+{
+	safe_operator_tests<Int8>();
 }

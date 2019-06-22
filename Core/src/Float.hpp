@@ -1,5 +1,5 @@
-#ifndef FLOAT_HPP
-#define FLOAT_HPP
+#ifndef FLOATOP_HPP
+#define FLOATOP_HPP
 
 #include "Operand.hpp"
 

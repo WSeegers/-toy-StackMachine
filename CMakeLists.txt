@@ -5,5 +5,5 @@ enable_testing()
 
 add_subdirectory(Core)
 
-add_executable(vm main.cpp)
-target_link_libraries(vm PRIVATE Core)
+# add_executable(vm main.cpp)
+# target_link_libraries(vm PRIVATE Core)

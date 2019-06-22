@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
-#include "OperandFactory.hpp"
+#include "../src/OperandFactory.hpp"
 
 bool basicTypeTest(eOperandType type)
 {

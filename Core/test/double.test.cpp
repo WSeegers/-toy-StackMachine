@@ -1,7 +1,11 @@
 #include "util.hpp"
 
-TEST_CASE("Double", "[DOUBLE]")
+TEST_CASE("[DOUBLE-INST]")
 {
 	test_float_instantiation<Double>();
-	// addition_tests<Double>();
+}
+
+TEST_CASE("[DOUBLE-OPERATOR]")
+{
+	safe_float_operator_tests<Double>();
 }

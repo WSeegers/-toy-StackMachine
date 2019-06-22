@@ -7,8 +7,7 @@ add_library(
 	src/OperandFactory.cpp
 	)
 
-target_include_directories(Core PUBLIC "./src")
-
+target_include_directories(Core PUBLIC "./include")
 
 # Tests
 
