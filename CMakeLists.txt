@@ -1,9 +1,13 @@
 cmake_minimum_required (VERSION 3.0)
 
+
 project(StackMachine)
+set_property(GLOBAL PROPERTY CXX_STANDARD 20)
 enable_testing()
 
 add_subdirectory(Core)
+add_subdirectory(Lexer)
 
-# add_executable(vm main.cpp)
-# target_link_libraries(vm PRIVATE Core)
+add_executable(vm main.cpp)
+target_link_libraries(vm PRIVATE Core)
+target_link_libraries(vm PRIVATE Lexer)
