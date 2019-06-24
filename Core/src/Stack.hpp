@@ -3,12 +3,12 @@
 
 #include "OperandFactory.hpp"
 
-#include <stack>
+#include <deque>
 
 class Stack
 {
 private:
-	std::stack<const IOperand *> _memory;
+	std::deque<const IOperand *> _memory;
 	OperandFactory _factory;
 	Stack(const Stack &cpy);
 	Stack &operator=(const Stack &rhs);
@@ -19,14 +19,14 @@ public:
 
 	void push(eOperandType type, const std::string &value);
 	void pop();
-	std::string dump();
+	void dump(std::ostream &stream);
 	void assert(eOperandType type, const std::string &value);
 	void add();
 	void sub();
 	void mul();
 	void div();
 	void mod();
-	void print();
+	void print(std::ostream &os);
 
 	struct Empty;
 	struct InferiorStackSize;

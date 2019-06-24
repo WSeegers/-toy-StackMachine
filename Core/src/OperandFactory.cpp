@@ -41,3 +41,16 @@ IOperand const *OperandFactory::createOperand(eOperandType type, std::string con
 {
 	return (this->*(_FunctionTable[type]))(value);
 }
+
+void OperandFactory::printOperand(const IOperand &op, std::ostream &os)
+{
+	if (op.getType() != _int8)
+		throw OperandFactory::NotPrintAbleValue();
+	else
+		os << dynamic_cast<const Int8 &>(op).getValue();
+}
+
+const char *OperandFactory::NotPrintAbleValue ::what() const throw()
+{
+	return "Type of Int8 is required";
+};
