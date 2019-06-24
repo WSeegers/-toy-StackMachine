@@ -222,7 +222,37 @@ public:
 
 	virtual const IOperand *operator%(IOperand const &rhs) const
 	{
-		throw std::runtime_error("Not Implimented");
+		if (this->getPrecision() < rhs.getPrecision())
+		{
+			switch (rhs.getType())
+			{
+			case _double:
+				return Operand<double>(this->_string) % rhs;
+			case _float:
+				return Operand<float>(this->_string) % rhs;
+			case _int32:
+				return Operand<int32_t>(this->_string) % rhs;
+			case _int16:
+				return Operand<int16_t>(this->_string) % rhs;
+			case _int8:
+				return Operand<int8_t>(this->_string) % rhs;
+			}
+		}
+
+		Operand<T> *ret = new Operand<T>(rhs.toString());
+
+		if (ret->_value == 0)
+		{
+			delete ret;
+			throw Operand::DivZero();
+		}
+
+		T f1 = this->_value;
+		T f2 = ret->_value;
+		T min = std::numeric_limits<T>::min();
+
+		ret->setValue(std::remainder(this->_value, ret->_value));
+		return ret;
 	}
 
 	virtual bool operator==(IOperand const &rhs) const
