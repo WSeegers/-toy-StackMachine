@@ -1,10 +1,12 @@
+add_subdirectory(Lexer)
+
 add_library(
 	Core
 	src/OperandFactory.cpp
 	src/Stack.cpp
+	src/Parser.cpp
 	)
 
-target_include_directories(Core PUBLIC "./include")
 
 # Tests
 

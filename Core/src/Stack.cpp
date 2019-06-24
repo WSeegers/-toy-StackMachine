@@ -49,12 +49,12 @@ void Stack::assert(eOperandType type, const std::string &value)
 void Stack::add()
 {
 	const IOperand *f1 = this->_memory.back();
+	this->_memory.pop_back();
 	const IOperand *f2 = this->_memory.back();
+	this->_memory.pop_back();
 
 	const IOperand *next = *f1 + *f2;
 
-	this->_memory.pop_back();
-	this->_memory.pop_back();
 	this->_memory.push_back(next);
 	delete f1;
 	delete f2;
@@ -63,12 +63,12 @@ void Stack::add()
 void Stack::sub()
 {
 	const IOperand *f1 = this->_memory.back();
+	this->_memory.pop_back();
 	const IOperand *f2 = this->_memory.back();
+	this->_memory.pop_back();
 
 	const IOperand *next = *f1 - *f2;
 
-	this->_memory.pop_back();
-	this->_memory.pop_back();
 	this->_memory.push_back(next);
 	delete f1;
 	delete f2;
@@ -77,12 +77,12 @@ void Stack::sub()
 void Stack::mul()
 {
 	const IOperand *f1 = this->_memory.back();
+	this->_memory.pop_back();
 	const IOperand *f2 = this->_memory.back();
+	this->_memory.pop_back();
 
 	const IOperand *next = *f1 * *f2;
 
-	this->_memory.pop_back();
-	this->_memory.pop_back();
 	this->_memory.push_back(next);
 	delete f1;
 	delete f2;
@@ -91,12 +91,12 @@ void Stack::mul()
 void Stack::div()
 {
 	const IOperand *f1 = this->_memory.back();
+	this->_memory.pop_back();
 	const IOperand *f2 = this->_memory.back();
+	this->_memory.pop_back();
 
 	const IOperand *next = *f1 / *f2;
 
-	this->_memory.pop_back();
-	this->_memory.pop_back();
 	this->_memory.push_back(next);
 	delete f1;
 	delete f2;
@@ -105,12 +105,12 @@ void Stack::div()
 void Stack::mod()
 {
 	const IOperand *f1 = this->_memory.back();
+	this->_memory.pop_back();
 	const IOperand *f2 = this->_memory.back();
+	this->_memory.pop_back();
 
 	const IOperand *next = *f1 % *f2;
 
-	this->_memory.pop_back();
-	this->_memory.pop_back();
 	this->_memory.push_back(next);
 	delete f1;
 	delete f2;

@@ -30,13 +30,14 @@ Z := [-]?[0..9]+.[0..9]+
 
 SEP := '\n'+
 */
-#include "./Token.hpp"
+#include "Token.hpp"
+#include "ILexer.hpp"
 
 #include <regex>
 #include <queue>
 #include <string>
 
-class Lexer
+class Lexer : public ILexer
 {
 private:
 	static const std::regex regInstruction;
@@ -53,11 +54,12 @@ private:
 	void getInt(std::string &input);
 
 public:
-	Lexer() {}
+	Lexer();
+	~Lexer();
 
-	void tokenize(std::string input);
-	Token nextToken();
-	bool empty();
+	virtual void tokenize(std::string input);
+	virtual Token nextToken();
+	virtual bool empty();
 };
 
 #endif

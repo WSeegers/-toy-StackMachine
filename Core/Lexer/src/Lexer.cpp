@@ -1,4 +1,4 @@
-#include "./Lexer.hpp"
+#include "../include/Lexer.hpp"
 
 #include <iostream>
 
@@ -27,6 +27,9 @@ const std::regex Lexer::regFloat("^\\( *([-]?\\d+\\.\\d+) *\\)");
 const std::regex Lexer::regInt("^\\( *([-]?\\d+) *\\)");
 
 const std::regex Lexer::regComment(";.*[\\n|\\n\\r]");
+
+Lexer::Lexer() {}
+Lexer::~Lexer() {}
 
 void Lexer::tokenize(std::string input)
 {
