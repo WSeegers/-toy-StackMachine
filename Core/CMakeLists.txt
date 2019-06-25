@@ -5,8 +5,10 @@ add_library(
 	src/OperandFactory.cpp
 	src/Stack.cpp
 	src/Parser.cpp
+	src/Token.cpp
 	)
 
+target_link_libraries(Core PUBLIC Lexer)
 
 # Tests
 
@@ -39,3 +41,8 @@ add_executable(DoubleTest test/double.test.cpp)
 target_include_directories(DoubleTest PUBLIC "../Catch")
 target_link_libraries(DoubleTest PRIVATE Core)
 add_test(DoubleTest DoubleTest)
+
+add_executable(ParserTest test/parser.test.cpp)
+target_include_directories(ParserTest PUBLIC "../Catch")
+target_link_libraries(ParserTest PRIVATE Core)
+add_test(ParserTest ParserTest)

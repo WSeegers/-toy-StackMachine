@@ -30,7 +30,7 @@ void Stack::dump(std::ostream &stream)
 		stream << op->toString() << std::endl;
 };
 
-void Stack::assert(eOperandType type, const std::string &value)
+void Stack::_assert(eOperandType type, const std::string &value)
 {
 	if (this->_memory.empty())
 		throw Stack::Empty();

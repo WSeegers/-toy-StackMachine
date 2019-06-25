@@ -1,8 +1,7 @@
 #ifndef TESTULTI_HPP
 #define TESTULTI_HPP
 
-#define CATCH_CONFIG_MAIN
-#include "catch.hpp"
+#include "./test.hpp"
 
 #include "../src/Operand.hpp"
 

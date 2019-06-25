@@ -30,12 +30,15 @@ Z := [-]?[0..9]+.[0..9]+
 
 SEP := '\n'+
 */
-#include "Token.hpp"
-#include "ILexer.hpp"
+
+#include "../../interface/ILexer.hpp"
 
 #include <regex>
 #include <queue>
 #include <string>
+
+class Token;
+class ILexer;
 
 class Lexer : public ILexer
 {

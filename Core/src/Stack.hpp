@@ -20,7 +20,7 @@ public:
 	void push(eOperandType type, const std::string &value);
 	void pop();
 	void dump(std::ostream &stream);
-	void assert(eOperandType type, const std::string &value);
+	void _assert(eOperandType type, const std::string &value);
 	void add();
 	void sub();
 	void mul();

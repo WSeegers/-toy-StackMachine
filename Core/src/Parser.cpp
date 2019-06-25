@@ -123,7 +123,7 @@ void Parser::parseAssert()
 
 	value = token.value();
 
-	this->Stack::assert(type, value);
+	this->Stack::_assert(type, value);
 }
 
 void Parser::dump() { this->Stack::dump(*(this->_os)); }
