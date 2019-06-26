@@ -10,6 +10,7 @@
 #include <limits>
 #include <cmath>
 #include <cstdlib>
+#include <type_traits>
 
 // Remove
 #include <iostream>
@@ -38,9 +39,9 @@ public:
 	Operand(const std::string &string);
 	Operand() : Operand("0") {}
 	Operand(const Operand<T> &cpy)
-			: _string(cpy._string),
-				_value(cpy._value),
-				_type(cpy._type) {}
+		: _string(cpy._string),
+		  _value(cpy._value),
+		  _type(cpy._type) {}
 
 	Operand<T> &operator=(Operand<T> &rhs)
 	{
@@ -60,7 +61,7 @@ public:
 		// This will preserve the highest possible accuracy
 		std::stringstream coversion;
 		coversion << std::setprecision(std::numeric_limits<T>::digits)
-							<< value;
+				  << value;
 		this->_string = coversion.str();
 		this->_value = value;
 	}
@@ -81,16 +82,19 @@ public:
 		T max = std::numeric_limits<T>::max();
 		T min = std::numeric_limits<T>::min();
 
-		if ((f2 > 0) && (f1 > max - f2))
+		if (std::is_integral<T>::value)
 		{
-			delete ret;
-			throw Operand::Overflow();
-		}
+			if ((f2 > 0) && (f1 > max - f2))
+			{
+				delete ret;
+				throw Operand::Overflow();
+			}
 
-		if ((f2 < 0) && (f1 < min - f2))
-		{
-			delete ret;
-			throw Operand::Underflow();
+			if ((f2 < 0) && (f1 < min - f2))
+			{
+				delete ret;
+				throw Operand::Underflow();
+			}
 		}
 
 		ret->setValue(this->_value + ret->_value);
@@ -123,16 +127,19 @@ public:
 		T max = std::numeric_limits<T>::max();
 		T min = std::numeric_limits<T>::min();
 
-		if ((f2 < 0) && (f1 > max + f2))
+		if (std::is_integral<T>::value)
 		{
-			delete ret;
-			throw Operand::Overflow();
-		}
+			if ((f2 < 0) && (f1 > max + f2))
+			{
+				delete ret;
+				throw Operand::Overflow();
+			}
 
-		if ((f2 > 0) && (f1 < min + f2))
-		{
-			delete ret;
-			throw Operand::Underflow();
+			if ((f2 > 0) && (f1 < min + f2))
+			{
+				delete ret;
+				throw Operand::Underflow();
+			}
 		}
 
 		ret->setValue(this->_value - ret->_value);
@@ -158,17 +165,20 @@ public:
 			ret->setValue(this->_value);
 		else if ((f1 == 0) || (f2 == 0))
 			ret->setValue(0);
-		else if (((f1 == -1) && (f2 == min)) || ((f2 == -1) && (f1 == min)))
+		else if (std::is_integral<T>::value &&
+				 (((f1 == -1) && (f2 == min)) || ((f2 == -1) && (f1 == min))))
 		{
 			delete ret;
 			throw Operand::Overflow();
 		}
-		else if ((f1 > 0) == (f2 > 0) && (std::abs(f1) > std::abs(max / f2)))
+		else if (std::is_integral<T>::value &&
+				 ((f1 > 0) == (f2 > 0) && (std::abs(f1) > std::abs(max / f2))))
 		{
 			delete ret;
 			throw Operand::Overflow();
 		}
-		else if ((f2 > 0 && f1 > max / f2) || (f2 < 0 && f1 < max / f2))
+		else if (std::is_integral<T>::value &&
+				 ((f2 > 0 && f1 > max / f2) || (f2 < 0 && f1 < max / f2)))
 		{
 			delete ret;
 			throw Operand::Underflow();
@@ -210,7 +220,8 @@ public:
 		T f2 = ret->_value;
 		T min = std::numeric_limits<T>::min();
 
-		if (((f1 == -1) && (f2 == min)) || ((f2 == -1) && (f1 == min)))
+		if (std::is_integral<T>::value &&
+			(((f1 == -1) && (f2 == min)) || ((f2 == -1) && (f1 == min))))
 		{
 			delete ret;
 			throw Operand::Overflow();
@@ -249,7 +260,6 @@ public:
 
 		T f1 = this->_value;
 		T f2 = ret->_value;
-		T min = std::numeric_limits<T>::min();
 
 		ret->setValue(std::remainder(this->_value, ret->_value));
 		return ret;

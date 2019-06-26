@@ -3,24 +3,24 @@
 #include <iostream>
 
 const std::regex Lexer::regInstruction(
-		"^ *(push"
-		"|pop"
-		"|dump"
-		"|assert"
-		"|add"
-		"|sub"
-		"|mul"
-		"|div"
-		"|mod"
-		"|print"
-		"|exit)");
+	"^ *(push"
+	"|pop"
+	"|dump"
+	"|assert"
+	"|add"
+	"|sub"
+	"|mul"
+	"|div"
+	"|mod"
+	"|print"
+	"|exit)");
 
 const std::regex Lexer::regValue(
-		"^ *(int8"
-		"|int16"
-		"|int32"
-		"|float"
-		"|double)");
+	"^ *(int8"
+	"|int16"
+	"|int32"
+	"|float"
+	"|double)");
 
 const std::regex Lexer::regFloat("^\\( *([-]?\\d+\\.\\d+) *\\)");
 
@@ -78,7 +78,7 @@ void Lexer::getFloat(std::string &input)
 {
 
 	std::smatch m;
-	if (std::regex_search(input, m, regFloat))
+	if (std::regex_search(input, m, regFloat) || std::regex_search(input, m, regInt))
 	{
 		Token flt(Token::eTokenType::floatingPoint, m[1].str());
 		this->c.push(flt);
@@ -88,6 +88,7 @@ void Lexer::getFloat(std::string &input)
 	{
 		// Handle bad Float
 		std::cout << "Bad Float" << std::endl;
+		throw "Bad Float";
 	}
 }
 
