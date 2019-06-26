@@ -4,32 +4,32 @@
 #include <functional>
 
 const InstructionMap Parser::instructionMap = {
-		{"push", &Parser::parsePush},
-		{"pop", &Parser::pop},
-		{"dump", &Parser::dump},
-		{"assert", &Parser::parseAssert},
-		{"add", &Parser::add},
-		{"sub", &Parser::sub},
-		{"mul", &Parser::mul},
-		{"div", &Parser::div},
-		{"mod", &Parser::mod},
-		{"print", &Parser::print},
-		{"exit", &Parser::exit}};
+	{"push", &Parser::parsePush},
+	{"pop", &Parser::pop},
+	{"dump", &Parser::dump},
+	{"assert", &Parser::parseAssert},
+	{"add", &Parser::add},
+	{"sub", &Parser::sub},
+	{"mul", &Parser::mul},
+	{"div", &Parser::div},
+	{"mod", &Parser::mod},
+	{"print", &Parser::print},
+	{"exit", &Parser::exit}};
 
 const TypeMap Parser::typeMap = {
-		{"int8", _int8},
-		{"int16", _int16},
-		{"int32", _int32},
-		{"float", _float},
-		{"double", _double}};
+	{"int8", _int8},
+	{"int16", _int16},
+	{"int32", _int32},
+	{"float", _float},
+	{"double", _double}};
 
 Parser::Parser() : Parser(nullptr) {}
 Parser::Parser(ILexer *lexer) : Parser(lexer, &std::cin, &std::cout) {}
 Parser::Parser(Parser &cpy) : Parser(cpy._lexer, cpy._is, cpy._os) {}
 Parser::Parser(ILexer *lexer, std::istream *is, std::ostream *os)
-		: _lexer(lexer),
-			_is(is),
-			_os(os) {}
+	: _lexer(lexer),
+	  _is(is),
+	  _os(os) {}
 Parser::~Parser() {}
 
 Parser &Parser::operator=(const Parser &rhs)
@@ -62,6 +62,8 @@ void Parser::parse()
 	if (!this->_lexer)
 		throw NullLexer();
 
+	int lineCount = 0;
+
 	std::istream &is(*(this->_is));
 	std::string line;
 	while (!is.eof())
@@ -71,6 +73,7 @@ void Parser::parse()
 		if (this->_is == &std::cin && line[0] == ';' && line[1] == ';')
 			break;
 		this->_lexer->tokenize(line);
+		lineCount++;
 	}
 
 	Token token;
@@ -97,7 +100,7 @@ void Parser::parsePush()
 
 	token = this->_lexer->nextToken();
 	if (!(token.tokenType() == Token::eTokenType::integer ||
-				token.tokenType() == Token::eTokenType::floatingPoint))
+		  token.tokenType() == Token::eTokenType::floatingPoint))
 		throw InvalidToken();
 
 	value = token.value();
@@ -118,7 +121,7 @@ void Parser::parseAssert()
 
 	token = this->_lexer->nextToken();
 	if (!(token.tokenType() == Token::eTokenType::integer ||
-				token.tokenType() == Token::eTokenType::floatingPoint))
+		  token.tokenType() == Token::eTokenType::floatingPoint))
 		throw InvalidToken();
 
 	value = token.value();

@@ -1,4 +1,5 @@
 add_subdirectory(Lexer)
+add_subdirectory(Logger)
 
 add_library(
 	Core
