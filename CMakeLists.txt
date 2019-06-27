@@ -7,6 +7,6 @@ enable_testing()
 
 add_subdirectory(Core)
 
-add_executable(vm main.cpp)
-target_link_libraries(vm PRIVATE Core)
-target_link_libraries(vm PRIVATE Lexer)
+add_executable(avm main.cpp)
+target_link_libraries(avm PRIVATE Core)
+target_link_libraries(avm PRIVATE Lexer)

@@ -19,12 +19,11 @@ typedef std::map<std::string, eOperandType> TypeMap;
 class Parser : private Stack
 {
 private:
-	// Stack stack;
-
 	Lexer _lexer;
 	std::istream *_is;
 	std::ostream *_os;
 	bool _throwError = false;
+	bool _exit = false;
 
 	static const InstructionMap instructionMap;
 	static const TypeMap typeMap;

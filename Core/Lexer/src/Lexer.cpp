@@ -47,7 +47,7 @@ void Lexer::getInstruction(std::string &input)
 	std::smatch m;
 	if (std::regex_search(input, m, regInstruction))
 	{
-		Token inst(Token::eTokenType::instruction, m[1].str());
+		Token inst(Token::eTokenType::instruction, m[1].str(), this->_idx);
 		this->_idx += m[0].length();
 		this->c.push(inst);
 		input = m.suffix().str();
@@ -64,7 +64,7 @@ void Lexer::getValue(std::string &input)
 	std::smatch m;
 	if (std::regex_search(input, m, regValue))
 	{
-		Token val(Token::eTokenType::valueType, m[1].str());
+		Token val(Token::eTokenType::valueType, m[1].str(), this->_idx);
 		this->_idx += m[0].length();
 		this->c.push(val);
 		input = m.suffix().str();
@@ -83,7 +83,7 @@ void Lexer::getFloat(std::string &input)
 	std::smatch m;
 	if (std::regex_search(input, m, regFloat) || std::regex_search(input, m, regInt))
 	{
-		Token flt(Token::eTokenType::floatingPoint, m[1].str());
+		Token flt(Token::eTokenType::floatingPoint, m[1].str(), this->_idx);
 		this->_idx += m[0].length();
 		this->c.push(flt);
 		input = m.suffix().str();
@@ -97,7 +97,7 @@ void Lexer::getInt(std::string &input)
 	std::smatch m;
 	if (std::regex_search(input, m, regInt))
 	{
-		Token _int(Token::eTokenType::integer, m[1].str());
+		Token _int(Token::eTokenType::integer, m[1].str(), this->_idx);
 		this->_idx += m[0].length();
 		this->c.push(_int);
 		input = m.suffix().str();

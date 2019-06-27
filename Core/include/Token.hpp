@@ -20,9 +20,11 @@ private:
 	eTokenType _tokenType;
 	std::string _value;
 
+	int _idx;
+
 public:
 	Token();
-	Token(eTokenType tokenType, const std::string &value);
+	Token(eTokenType tokenType, const std::string &value, int idx);
 	Token(const Token &cpy);
 	~Token();
 
@@ -30,6 +32,7 @@ public:
 
 	eTokenType tokenType();
 	const std::string &value();
+	int line();
 };
 
 #endif

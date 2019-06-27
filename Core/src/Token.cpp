@@ -2,11 +2,13 @@
 
 Token::Token() {}
 
-Token::Token(eTokenType tokenType, const std::string &value)
-		: _tokenType(tokenType), _value(value) {}
+Token::Token(eTokenType tokenType, const std::string &value, int idx)
+		: _tokenType(tokenType),
+			_value(value),
+			_idx(idx) {}
 
 Token::Token(const Token &cpy)
-		: Token(cpy._tokenType, cpy._value) {}
+		: Token(cpy._tokenType, cpy._value, cpy._idx) {}
 
 Token::~Token() {}
 

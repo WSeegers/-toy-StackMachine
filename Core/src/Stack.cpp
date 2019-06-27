@@ -80,7 +80,7 @@ void Stack::sub()
 	const IOperand *f2 = this->_memory.back();
 	this->_memory.pop_back();
 
-	const IOperand *next = *f1 - *f2;
+	const IOperand *next = *f2 - *f1;
 
 	this->_memory.push_back(next);
 	delete f1;
@@ -99,7 +99,7 @@ void Stack::mul()
 	const IOperand *f2 = this->_memory.back();
 	this->_memory.pop_back();
 
-	const IOperand *next = *f1 * *f2;
+	const IOperand *next = *f2 * *f1;
 
 	this->_memory.push_back(next);
 	delete f1;
@@ -118,7 +118,7 @@ void Stack::div()
 	const IOperand *f2 = this->_memory.back();
 	this->_memory.pop_back();
 
-	const IOperand *next = *f1 / *f2;
+	const IOperand *next = *f2 / *f1;
 
 	this->_memory.push_back(next);
 	delete f1;
@@ -137,7 +137,7 @@ void Stack::mod()
 	const IOperand *f2 = this->_memory.back();
 	this->_memory.pop_back();
 
-	const IOperand *next = *f1 % *f2;
+	const IOperand *next = *f2 % *f1;
 
 	this->_memory.push_back(next);
 	delete f1;

@@ -84,7 +84,7 @@ void Parser::parse()
 		return;
 
 	Token token;
-	while (!this->_lexer.empty())
+	while (!this->_lexer.empty() && !this->_exit)
 	{
 		token = this->_lexer.nextToken();
 		if (token.tokenType() != Token::eTokenType::instruction)
@@ -96,9 +96,12 @@ void Parser::parse()
 		}
 		catch (std::exception &e)
 		{
-			Logger::RuntimeError(e.what(), 0);
+			Logger::RuntimeError(e.what(), lineCount);
+			return;
 		}
 	}
+	if (!this->_exit)
+		Logger::RuntimeError("Program stopped without exit", lineCount);
 }
 
 void Parser::parsePush()
@@ -145,7 +148,7 @@ void Parser::parseAssert()
 
 void Parser::dump() { this->Stack::dump(*(this->_os)); }
 void Parser::print() { this->Stack::print(*(this->_os)); }
-void Parser::exit() { throw "Not Implimented"; }
+void Parser::exit() { this->_exit = true; }
 
 const char *Parser::InvalidToken::what() const throw()
 {
