@@ -55,8 +55,8 @@ Int16::Operand(const std::string &value)
 template <>
 Int32::Operand(const std::string &value)
 		: _string(value),
-			_type(eOperandType::_int32),
-			_value(0)
+			_value(0),
+			_type(eOperandType::_int32)
 {
 	try
 	{

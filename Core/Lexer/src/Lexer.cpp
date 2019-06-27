@@ -69,7 +69,7 @@ void Lexer::getValue(std::string &input)
 		this->c.push(val);
 		input = m.suffix().str();
 
-		if (val.value().find("int") == -1)
+		if (val.value().find("int") == std::string::npos)
 			this->getFloat(input);
 		else
 			this->getInt(input);

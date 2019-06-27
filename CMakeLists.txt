@@ -3,6 +3,8 @@ cmake_minimum_required (VERSION 3.0)
 
 project(StackMachine)
 set (CMAKE_CXX_STANDARD 20)
+add_compile_options(-Wextra -Werror -Wall)
+
 enable_testing()
 
 add_subdirectory(Core)

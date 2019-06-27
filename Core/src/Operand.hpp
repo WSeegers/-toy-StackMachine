@@ -258,9 +258,6 @@ public:
 			throw Operand::DivZero();
 		}
 
-		T f1 = this->_value;
-		T f2 = ret->_value;
-
 		ret->setValue(std::remainder(this->_value, ret->_value));
 		return ret;
 	}
