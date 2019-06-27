@@ -6,14 +6,9 @@
 
 Lexer lex;
 
-void test(std::string s)
-{
-}
-
 int main()
 {
-	Lexer lex;
-	Parser parser(&lex);
+	Parser parser;
 
 	parser.parse();
 }

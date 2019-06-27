@@ -9,7 +9,8 @@ add_library(
 	src/Token.cpp
 	)
 
-target_link_libraries(Core PUBLIC Lexer)
+target_link_libraries(Core PUBLIC Lexer Logger)
+# target_include_directories(Core PRIVATE ./Lexer/include ./Logger/include)
 
 # Tests
 

@@ -1,13 +1,15 @@
-#include "../include/logger.hpp"
+#include "../include/Logger.hpp"
 
 #include <iostream>
 
-void LexicalError(std::string &msg, int line)
+void Logger::LexicalError(const std::string &msg, int line, int index)
 {
-    std::cerr << "Lexical Error | Line " << line << ":" << msg << std::endl;
+	std::cerr << "Lexical Error -> "
+						<< line << ":" << index << " : " << msg << std::endl;
 }
 
-void RuntimeError(std::string &msg, int line)
+void Logger::RuntimeError(const std::string &msg, int line)
 {
-    std::cerr << "Runtime Error | Line " << line << ":" << msg << std::endl;
+	std::cerr << "Runtime Error -> Line "
+						<< line << " : " << msg << std::endl;
 }

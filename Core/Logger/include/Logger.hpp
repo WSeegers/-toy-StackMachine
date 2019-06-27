@@ -1,12 +1,12 @@
 #ifndef LOGGER_HPP
 #define LOGGER_HPP
 
-#include "../../interface/ILogger.hpp"
+#include <string>
 
-class Logger : ILogger
+namespace Logger
 {
-    virtual void LexicalError(std::string &msg, int line);
-    virtual void RuntimeError(std::string &msg, int line);
-};
+void LexicalError(const std::string &msg, int line, int index);
+void RuntimeError(const std::string &msg, int line);
+}; // namespace Logger
 
 #endif

@@ -2,7 +2,8 @@
 #define PARSER
 
 #include "./Stack.hpp"
-#include "../interface/ILexer.hpp"
+#include "../Lexer/include/Lexer.hpp"
+#include "../Logger/include/Logger.hpp"
 
 #include <istream>
 #include <ostream>
@@ -20,9 +21,10 @@ class Parser : private Stack
 private:
 	// Stack stack;
 
-	ILexer *_lexer;
+	Lexer _lexer;
 	std::istream *_is;
 	std::ostream *_os;
+	bool _throwError = false;
 
 	static const InstructionMap instructionMap;
 	static const TypeMap typeMap;
@@ -39,31 +41,23 @@ private:
 
 public:
 	Parser();
-	Parser(ILexer *lexer);
-	Parser(ILexer *lexer, std::istream *is, std::ostream *os);
+	Parser(std::istream *is, std::ostream *os);
 	Parser(Parser &cpy);
 	~Parser();
 
-	const ILexer *lexer();
-	void setLexer(ILexer *lexer);
+	Parser &operator=(const Parser &rhs);
 
 	const std::istream *is();
-	void setLexer(std::istream *is);
+	void setInStream(std::istream *is);
 
 	const std::ostream *os();
-	void setLexer(std::ostream *os);
+	void setOutStream(std::ostream *os);
 
-	Parser &operator=(const Parser &rhs);
+	void setThrowErrors(bool b);
 
 	void parse();
 
-	struct NullLexer;
 	struct InvalidToken;
-};
-
-struct Parser::NullLexer : public std::exception
-{
-	const char *what() const throw();
 };
 
 struct Parser::InvalidToken : public std::exception

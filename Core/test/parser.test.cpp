@@ -5,10 +5,11 @@
 
 TEST_CASE("[PARSER-BASIC]")
 {
-	Lexer lex;
 	std::stringstream input;
 	std::stringstream out;
-	Parser parser(&lex, &input, &out);
+	Parser parser(&input, &out);
+
+	parser.setThrowErrors(true);
 
 	input << "push int32(32)" << std::endl;
 	input << "assert int32(32)" << std::endl;
@@ -58,10 +59,11 @@ TEST_CASE("[PARSER-ADDITION]")
 {
 	SECTION("Typing")
 	{
-		Lexer lex;
 		std::stringstream input;
 		std::stringstream out;
-		Parser parser(&lex, &input, &out);
+		Parser parser(&input, &out);
+
+		parser.setThrowErrors(true);
 
 		input << "push double(0)" << std::endl;
 		input << "push float(0)" << std::endl;
@@ -83,10 +85,11 @@ TEST_CASE("[PARSER-ADDITION]")
 
 	SECTION("Functionality")
 	{
-		Lexer lex;
 		std::stringstream input;
 		std::stringstream out;
-		Parser parser(&lex, &input, &out);
+		Parser parser(&input, &out);
+
+		parser.setThrowErrors(true);
 
 		input << "push double(1)" << std::endl;
 		input << "push float(1)" << std::endl;
@@ -111,10 +114,11 @@ TEST_CASE("[PARSER-SUBTRACTION]")
 {
 	SECTION("Typing")
 	{
-		Lexer lex;
 		std::stringstream input;
 		std::stringstream out;
-		Parser parser(&lex, &input, &out);
+		Parser parser(&input, &out);
+
+		parser.setThrowErrors(true);
 
 		input << "push double(0)" << std::endl;
 		input << "push float(0)" << std::endl;
@@ -136,10 +140,11 @@ TEST_CASE("[PARSER-SUBTRACTION]")
 
 	SECTION("Functionality")
 	{
-		Lexer lex;
 		std::stringstream input;
 		std::stringstream out;
-		Parser parser(&lex, &input, &out);
+		Parser parser(&input, &out);
+
+		parser.setThrowErrors(true);
 
 		input << "push double(1)" << std::endl;
 		input << "push float(1)" << std::endl;
@@ -164,10 +169,11 @@ TEST_CASE("[PARSER-MULTIPLICATION]")
 {
 	SECTION("Typing")
 	{
-		Lexer lex;
 		std::stringstream input;
 		std::stringstream out;
-		Parser parser(&lex, &input, &out);
+		Parser parser(&input, &out);
+
+		parser.setThrowErrors(true);
 
 		input << "push double(1)" << std::endl;
 		input << "push float(1)" << std::endl;
@@ -189,10 +195,11 @@ TEST_CASE("[PARSER-MULTIPLICATION]")
 
 	SECTION("Functionality")
 	{
-		Lexer lex;
 		std::stringstream input;
 		std::stringstream out;
-		Parser parser(&lex, &input, &out);
+		Parser parser(&input, &out);
+
+		parser.setThrowErrors(true);
 
 		input << "push double(-1)" << std::endl;
 		input << "push float(-1)" << std::endl;
@@ -217,10 +224,11 @@ TEST_CASE("[PARSER-DIVISION]")
 {
 	SECTION("Typing")
 	{
-		Lexer lex;
 		std::stringstream input;
 		std::stringstream out;
-		Parser parser(&lex, &input, &out);
+		Parser parser(&input, &out);
+
+		parser.setThrowErrors(true);
 
 		input << "push double(1)" << std::endl;
 		input << "push float(1)" << std::endl;
@@ -242,10 +250,11 @@ TEST_CASE("[PARSER-DIVISION]")
 
 	SECTION("Functionality")
 	{
-		Lexer lex;
 		std::stringstream input;
 		std::stringstream out;
-		Parser parser(&lex, &input, &out);
+		Parser parser(&input, &out);
+
+		parser.setThrowErrors(true);
 
 		input << "push double(-1)" << std::endl;
 		input << "push float(-1)" << std::endl;
@@ -270,10 +279,11 @@ TEST_CASE("[PARSER-MODULO]")
 {
 	SECTION("Typing + Functionality")
 	{
-		Lexer lex;
 		std::stringstream input;
 		std::stringstream out;
-		Parser parser(&lex, &input, &out);
+		Parser parser(&input, &out);
+
+		parser.setThrowErrors(true);
 
 		input << "push double(4)" << std::endl;
 		input << "push float(4)" << std::endl;
@@ -298,10 +308,12 @@ TEST_CASE("[PARSER-PRINT]")
 {
 	SECTION("Functionality")
 	{
-		Lexer lex;
 		std::stringstream input;
 		std::stringstream out;
-		Parser parser(&lex, &input, &out);
+		Parser parser(&input, &out);
+
+		parser.setThrowErrors(true);
+
 		std::string test("The quick brown fox jumps over the lazy dog");
 		for (char c : test)
 		{
